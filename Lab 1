@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        //Зададим список
+        List<int> numbers = new List<int> {15, 2, 33, 4, 56};
+        //Делегат Function, который увеличивает значение числа на 2
+        Func<int, int> increaseForTwo = x => x += 2;
+        //Делегат Action, который вызывает Func и принимает список объектов
+        Action<Func<int, int>, List<int>> ListIncreasing = (increasingFunc, list) =>
+        {
+            // берем каждый отдельный элемент списка и увеличиваем его на 2 в соответствии с делегатом Func
+            for (int i = 0; i < list.Count(); i++)
+            {
+                int result = increasingFunc(list[i]);
+                Console.WriteLine($"При выполнении функции для числа {list[i]} было получени значение {result}");
+            }
+        };
+        //Вызов
+        ListIncreasing(increaseForTwo, numbers);
+    }
+}
