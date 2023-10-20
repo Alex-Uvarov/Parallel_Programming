@@ -9,17 +9,26 @@ class Program
         List<string> numbers = new List<string> {"15", "2", "33", "4", "56"};
         //Делегат Function, который увеличивает значение числа на 2
         Func<int, int> IncreaseForTwo = x => x+=2;
+        //Делегат Function, который возводит число в квадрат
+        Func<int, int> Square = x => x * x;
         //Делегат Action, который вызывает Func и принимает список объектов
         Action<Func<int, int>, List<string>> ListIncreasing = (increasingFunc, list) =>
         {
-            // берем каждый отдельный элемент списка и увеличиваем его на 2 в соответствии с Func
+            Console.WriteLine("Начало выполнения");
+            Console.WriteLine("");
+            // берем каждый отдельный элемент списка применяем на него Func
             for (int i = 0; i < list.Count(); i++)
             {
                 int result = increasingFunc(int.Parse(list[i]));
+
                 Console.WriteLine($"При выполнении функции для числа {list[i]} было получени значение {result}");
             }
+            Console.WriteLine("");
+            Console.WriteLine("Конец выполнения");
+            Console.WriteLine("");
         };
         //Вызов
         ListIncreasing(IncreaseForTwo, numbers);
+        ListIncreasing(Square, numbers);
     }
 }
