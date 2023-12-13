@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        //Запрос длины вектора
+
+        Console.WriteLine("Введите длину вектора");
+        var n = Convert.ToInt32(Console.ReadLine());
+
+        // Создание делегата перемножающего векторы
+
+        Action<int> multiply = (vectorSize) =>
+        {
+            //Создание случайного вектора с числами <1
+
+            double result = 0;
+            Random random = new Random();
+            double[] vector1 = new double[vectorSize];
+            double[] vector2 = new double[vectorSize];
+            for (int i = 0; i < vectorSize; i++)
+            {
+                vector1[i] = Math.Round(random.NextDouble() * 10);
+                vector2[i] = Math.Round(random.NextDouble() * 10);
+            };
+
+            //Запись скалярного произведения векторов
+
+            for (int i = 0; i < n; i++)
+            {
+                result += vector1[i] * vector2[i];
+            };
+
+            //Выводж вектора 1 на экран
+
+            Console.Write("Вектор 1: (");
+            for (int i = 0; i < vector1.Length - 1; i++)
+            {
+                Console.Write(vector1[i] + ", ");
+            };
+            Console.WriteLine(vector1[vector1.Length - 1] + ")");
+
+            //Выводж вектора 2 на экран
+
+            Console.Write("Вектор 2: (");
+            for (int i = 0; i < vector2.Length - 1; i++)
+            {
+                Console.Write(vector2[i] + ", ");
+            };
+            Console.WriteLine(vector2[vector2.Length - 1] + ")");
+
+            //Вывод скалярного произведения
+
+            Console.WriteLine("Cкалярное произведение векторов: " + result);
+        };
+
+        //Вызов делегата
+
+        multiply(n);
+    }
+}
