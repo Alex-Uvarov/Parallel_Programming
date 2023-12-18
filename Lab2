@@ -3,12 +3,39 @@ using System.Collections.Generic;
 
 class Program
 {
+    public static async Task Async()
+    {
+        // Создание делегата для асинхронного метода
+        Func<int, int, Task<int>> asyncMethod = async (param1, param2) =>
+        {
+            // Мониторинг процесса выполнения
+            Console.WriteLine("Метод выполняется...");
+
+            // Имитация работы метода
+            Thread.Sleep(3000);
+
+            // Возвращение результата работы метода
+            return param1 + param2;
+        };
+
+        // Вызов асинхронного метода с передачей параметров и получением результата
+        int result = await asyncMethod(10, 20);
+
+        // Вывод результата работы метода
+        Console.WriteLine($"Результат работы метода: {result}");
+    }
     static void Main()
     {
+
         //Запрос длины вектора
 
         Console.WriteLine("Введите длину вектора");
         var n = Convert.ToInt32(Console.ReadLine());
+
+        //Начало выполнения асинхронного метода
+
+        Async();
+
 
         // Создание делегата перемножающего векторы
 
